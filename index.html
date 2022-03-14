@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			function StopWatch() {
+				let is_start = false;
+				let duration = 0;
+				let start = 0;
+				let end = 0;
+
+				this.start = function () {
+					if (is_start) throw new Error("Stop Watch already started");
+					is_start = true;
+					start = new Date().getTime();
+					return "Stop Watch started";
+				};
+
+				this.duration = function () {
+					duration = (end - start) / 1000;
+					return duration;
+				};
+
+				this.stop = function () {
+					if (!is_start) throw new Error("Stop Watch already stoped");
+					is_start = false;
+					end = new Date().getTime();
+					return "Stop Watch ended";
+				};
+
+				this.reset = function () {
+					is_start = false;
+					start = 0;
+					end = 0;
+					duration = 0;
+				};
+			}
+			const sw = new StopWatch();
+		</script>
+	</body>
+</html>
